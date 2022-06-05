@@ -9,8 +9,7 @@
             <class name="test.DataProviderFromarray" />
             <class name="test.testcases.ProductSearchTest" />
             <class name="test.testcases.RegisterTest" />
-
-
+            <class name="test.day20.Helloword" />
         </classes>
     </test>
 
