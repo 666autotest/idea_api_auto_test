@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="测试套件" >
+    <test name="测试">
+        <classes>
+            <!--包名.包名.类名-->
+            <class name="test.testcases.ShopcarTest" />
+            <class name="test.testcases.LoginTest" />
+            <class name="test.DataProviderFromarray" />
+            <class name="test.testcases.ProductSearchTest" />
+            <class name="test.testcases.RegisterTest" />
+
+
+        </classes>
+    </test>
+
+</suite>
+
+<!--
+好处：通过配置来管理我们的测试用例比较方便
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+    文档类型定义(Document Type Definition) 规定文档语法编辑规则
+<suite>     套件，根标签，通常由几个<test>组成，name为必须属性
+<test>      测试用例，name为必须属性；
+<classes>   用例中包含的类，子标签为<class>
+<class>     测试类，其中属性name为必须属性
+
+-->
