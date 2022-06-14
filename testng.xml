@@ -11,6 +11,7 @@
             <class name="test.testcases.RegisterTest" />
             <class name="test.day20.Helloword" />
             <class name="test.day20.Calculator" />
+
         </classes>
     </test>
 
