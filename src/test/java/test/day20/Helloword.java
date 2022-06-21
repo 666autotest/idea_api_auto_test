@@ -6,6 +6,11 @@ package test.day20;
  */
 public class Helloword {
     public static void main(String[] args) {
-        System.out.println("Heool Word");
+
+        int sum=0;
+        for (int i =1; i<=100; i++){
+        sum+=i;
+    }
+        System.out.println("1-100的和为："+sum);
     }
 }
