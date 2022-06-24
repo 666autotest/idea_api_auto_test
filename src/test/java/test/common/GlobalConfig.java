@@ -6,7 +6,7 @@ package test.common;
  */
 public class GlobalConfig {
     //调试开关
-    public static final boolean IS_DEBUG=true;
+    public static final boolean IS_DEBUG=false;
     //项目url地址
     public static final String url = "http://mall.lemonban.com:8107";
 }
