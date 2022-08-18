@@ -16,8 +16,8 @@
     </properties>
 
     <dependencies>
-         <!--https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java-->
-      <dependency>
+        <!--https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java-->
+        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
@@ -66,7 +66,7 @@
             <scope>test</scope>
         </dependency>
 
-         <!--https://mvnrepository.com/artifact/org.testng/testng-->
+        <!--https://mvnrepository.com/artifact/org.testng/testng-->
 
 
         <dependency>
@@ -89,8 +89,6 @@
             <artifactId>commons-dbutils</artifactId>
             <version>1.6</version>
         </dependency>
-
-
         <dependency>
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-base</artifactId>
@@ -184,17 +182,7 @@
                         <artifactId>commons-dbutils</artifactId>
                         <version>1.6</version>
                     </dependency>
-
                 </dependencies>
-
-                -<dependency>
-                <groupId>com.lemon</groupId>
-                <artifactId>encryption</artifactId>
-                <version>1.0</version>
-                <scope>system</scope>
-                <systemPath>${basedir}/lib/lemon.jar</systemPath>
-            </dependency>
-
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -204,7 +192,9 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+
         </plugins>
+
     </build>
 
 

@@ -149,7 +149,7 @@ public class BaseTest {
         }
         //接口日志保存到allure报告附件中
         try {
-            Allure.addAttachment("接口日志",new FileInputStream(logFilePath));
+            Allure.addAttachment(excelPojo.getTitle()+"日志",new FileInputStream(logFilePath));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
