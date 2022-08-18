@@ -1,3 +1,4 @@
+/*
 package api_auto_test_java41.tasecase;
 
 import com.lemon.encryption.MD5Util;
@@ -12,12 +13,14 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
+*/
 /**
  * @author 歪歪欧巴
  * @Description TODO
  * @date 2022/8/8 20:09
  * @Copyright 湖南省零檬信息技术有限公司. All rights reserved.
- */
+ *//*
+
 public class EncryptTest {
     @Test
     public void test_md5(){
@@ -72,8 +75,11 @@ public class EncryptTest {
     public static void main(String[] args) throws Exception {
         //获取系统时间戳（毫秒级）
         //System.out.println(System.currentTimeMillis()/1000);;
-        /*String str = "123456";
+        */
+/*String str = "123456";
         //System.out.println(str.substring(0,5));
-        System.out.println(RSAManager.encryptWithBase64(str));*/
+        System.out.println(RSAManager.encryptWithBase64(str));*//*
+
     }
 }
+*/

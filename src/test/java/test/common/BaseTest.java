@@ -4,11 +4,17 @@ import api_auto_test_java41.data.Environment;
 import api_auto_test_java41.pojo.ExcelPojo;
 import api_auto_test_java41.utils.DBUtil;
 import com.alibaba.fastjson.JSONObject;
+import io.qameta.allure.Allure;
+import io.restassured.RestAssured;
+import io.restassured.config.LogConfig;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import test.util.JDBCUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -77,6 +83,19 @@ public class BaseTest {
      * @return 响应数据
      */
     public static Response request(ExcelPojo excelPojo) {
+        //1.指定接口日志保存路径在log/testXX.log
+        PrintStream fileOutPutStream = null;
+        String logFilePath = "log/tes"+excelPojo.getCaseId()+".log";
+        try {
+            fileOutPutStream = new PrintStream(new File(logFilePath));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        //2.把接口日志重定向到本地log/testXX.log
+        RestAssured.config = RestAssured.config().logConfig(LogConfig.logConfig().defaultStream(fileOutPutStream));
+
+
+
         //拆分String method, String url, Map<String,Object> map, String params，因为提换请求头需要字符串类型，请求头是map
         //1.请求方法
         String method = excelPojo.getMethod();
@@ -127,6 +146,12 @@ public class BaseTest {
             //delete请求
             res = given().log().all().headers(map).body(params).when().delete(url).
                     then().log().all().extract().response();
+        }
+        //接口日志保存到allure报告附件中
+        try {
+            Allure.addAttachment("接口日志",new FileInputStream(logFilePath));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
         return res;
     }
