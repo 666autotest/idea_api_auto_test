@@ -3,6 +3,7 @@ package test.common;
 import api_auto_test_java41.data.Environment;
 import api_auto_test_java41.pojo.ExcelPojo;
 import api_auto_test_java41.utils.DBUtil;
+import api_auto_test_java41.utils.PropertiesUtil;
 import com.alibaba.fastjson.JSONObject;
 import io.qameta.allure.Allure;
 import io.restassured.RestAssured;
@@ -11,12 +12,10 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import test.util.JDBCUtils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -83,17 +82,22 @@ public class BaseTest {
      * @return 响应数据
      */
     public static Response request(ExcelPojo excelPojo) {
-        //1.指定接口日志保存路径在log/testXX.log
-        PrintStream fileOutPutStream = null;
-        String logFilePath = "log/tes"+excelPojo.getCaseId()+".log";
-        try {
-            fileOutPutStream = new PrintStream(new File(logFilePath));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        //读取config.properties文件中的配置log_output
+        String logOutput = PropertiesUtil.readProperties("src\\test\\resources\\config.properties","log_output");
+        String logFilePath = "log/test"+excelPojo.getCaseId()+".log";
+        if(logOutput.equals("console")){
+            //不需要将日志重定向到本地的文件中了，输出到控制台
+        }else if(logOutput.equals("allure")){
+            //需要将日志重定向到本地的文件中了
+            //设置接口日志输出
+            PrintStream fileOutPutStream = null;
+            try {
+                fileOutPutStream = new PrintStream(new File(logFilePath));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            RestAssured.config = RestAssured.config().logConfig(LogConfig.logConfig().defaultStream(fileOutPutStream));
         }
-        //2.把接口日志重定向到本地log/testXX.log
-        RestAssured.config = RestAssured.config().logConfig(LogConfig.logConfig().defaultStream(fileOutPutStream));
-
 
 
         //拆分String method, String url, Map<String,Object> map, String params，因为提换请求头需要字符串类型，请求头是map
@@ -223,14 +227,14 @@ public class BaseTest {
         return orgstr;
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         String orgStr = "{\"basketId\":0,\"count\":1,\"prodId\":\"#prodId#\",\"shopId\":#shopId#,\"skuId\":#skuId#}";
 
         Environment.var.put("prodId", 888);
         Environment.var.put("shopId", 888);
         Environment.var.put("skuId", 888);
         System.out.println(replaceParam(orgStr));
-    }
+    }*/
 
     /**
      * 数据库断言方法
@@ -252,6 +256,14 @@ public class BaseTest {
             }
         }
     }
+/*    public static void main(String[] args) throws IOException {
+        //properties文件读取？？
+        Properties properties = new Properties();
+        properties.load(new FileInputStream("src\\test\\resources\\config.properties"));
+        //读取配置
+        String result = properties.getProperty("log_output");
+        System.out.println(result);
+    }*/
 
     /**
      * 提取响应字段，保存对应的字段到环境变量中
