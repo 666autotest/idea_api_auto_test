@@ -186,6 +186,15 @@
                     </dependency>
 
                 </dependencies>
+
+                -<dependency>
+                <groupId>com.lemon</groupId>
+                <artifactId>encryption</artifactId>
+                <version>1.0</version>
+                <scope>system</scope>
+                <systemPath>${basedir}/lib/lemon.jar</systemPath>
+            </dependency>
+
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -197,5 +206,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

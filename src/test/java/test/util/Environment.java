@@ -25,6 +25,7 @@ public class Environment {
      */
     public static void saveToEnvironment(String varName, Object varValue) {
         Environment.EnvironmentMap.put(varName, varValue);
+        //EnvironmentMap.put(varName, varValue);
     }
 
     /**

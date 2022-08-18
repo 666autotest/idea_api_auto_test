@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 import test.ApiDefinition.ApiCall;
 import test.common.BaseTest;
 import test.pojo.CaseData;
-import test.util.ExcelUtil;
 
 import java.io.File;
 import java.util.List;
@@ -18,7 +17,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static io.restassured.RestAssured.given;
-import static org.apache.commons.lang3.ArrayUtils.toArray;
 
 /**
  * @author luxi
@@ -84,21 +82,21 @@ public class LoginTest extends BaseTest {
         //集合转成一维数组
         return datas.toArray();
 
-    }
+    }}
 
 
 
     /**
      * 通用响应断言方法
-     *
-     * @param assertDatas Excel中的断言数据(Json格式设计)
+     *  @param assertDatas Excel中的断言数据(Json格式设计)
      * @param res         接口响应结果
      */
+/*
 
-    public void assertResponse(String assertDatas, Response res) {
+    public void assertResponse01(ExcelDataPojo assertDatas, Response res) {
         //{"statuscode":200,"nickName":"waiwai"}
         //2-1、断言为json字符串需转成Java的map(导入fastjson依赖)，1：fastjson 2：Jackson
-        Map<String, Object> map = JSONObject.parseObject(assertDatas);
+        //Map<String, Object> map = JSONObject.parseObject(assertDatas);
         //2-2、遍历Map
         Set<Map.Entry<String, Object>> datas = map.entrySet();
         for (Map.Entry<String, Object> keyValue : datas) {
@@ -124,3 +122,4 @@ public class LoginTest extends BaseTest {
     }
 }
 
+*/
